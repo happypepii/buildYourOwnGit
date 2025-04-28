@@ -1,6 +1,7 @@
 import argparse
 import os
 import data
+import base
 
 def main():
     args = parse_args()
@@ -23,6 +24,9 @@ def parse_args():
     cat_file_parser.set_defaults(func=cat_file)
     cat_file_parser.add_argument('objectId')
 
+    write_tree_parser = commands.add_parser('write-tree')
+    write_tree_parser.set_defaults(func=write_tree)
+
     return parser.parse_args()
 
 def init(args):
@@ -38,6 +42,9 @@ def cat_file(args):
         print(f"Object {args.objectId} not found")
     else:
         print(content.decode())
+
+def write_tree(args):
+    print(base.write_tree())
         
 if __name__ == "__main__":
     main()
